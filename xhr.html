@@ -8,9 +8,18 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* li{
-            color: skyblue;
-        } */
+        ul li{
+            width: 80%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 10px #aaa;
+            margin: 10px;
+        }
+        ul li:hover{
+            width: 81%;
+            background-color: lightgreen;
+        }
     </style>
 </head>
 <body>
@@ -45,19 +54,19 @@
         // console.log(response)
         // console.log(type, status, response)
         let data=JSON.parse(response);
-        // console.log(data);
+        // console.log('data',data);
         let events=data.entry;
         
         let li="";
-        console.log(events);
+        console.log('events',events);
         events.forEach((event, idx) => {
             li=li+"<li>"+event.title+"</li>";
-            //li=li+"<li>"+event.summary+"</li><br><br>"; //自己加好玩(?)的
 
         });
         // console.log(li);
 
         document.getElementsByTagName('ul')[0].innerHTML=li;
+        document.getElementsByClassName('title')[0].innerHTML=data.title;
         
     }
 
