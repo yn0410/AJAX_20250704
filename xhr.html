@@ -26,14 +26,35 @@
     ********************************************************/
 
     //宣告一個XMLHttpRequest物件
-
+    let xhr = new XMLHttpRequest;
 
     //建立請求的各項設定及實質內容
-
+    xhr.open('get','https://kktix.com/events.json');
 
     //建立得到回應時的各項設定及行為
+    xhr.onload=function(){  
+        var type=xhr.getResponseHeader("Content-Type");
+        var status=xhr.status
+        var response=xhr.responseText
+        // document.write(response)
+        // console.log(response)
+        // console.log(type, status, response)
+        let data=JSON.parse(response);
+        // console.log(data);
+        let events=data.entry;
+        
+        let li="";
+        events.forEach((event, idx) => {
+            li=li+"<li>"+event.title+"</li>";
 
+        });
+        // console.log(li);
+
+        document.getElementsByTagName('ul')[0].innerHTML=li;
+        
+    }
 
     //送出請求
+    xhr.send();
 
     </script>
