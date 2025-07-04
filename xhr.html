@@ -7,6 +7,11 @@
     <title>XMLHttpRequest</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* li{
+            color: skyblue;
+        } */
+    </style>
 </head>
 <body>
     <h1 class="header">XMLHttpRequest</h1>
@@ -44,8 +49,10 @@
         let events=data.entry;
         
         let li="";
+        console.log(events);
         events.forEach((event, idx) => {
             li=li+"<li>"+event.title+"</li>";
+            //li=li+"<li>"+event.summary+"</li><br><br>"; //自己加好玩(?)的
 
         });
         // console.log(li);
