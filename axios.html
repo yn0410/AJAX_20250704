@@ -8,6 +8,24 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <!-----引入axios函式庫------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.10.0/axios.min.js" integrity="sha512-WkZrEcQ5LMyNy6Y2PQf+Tu3vMcsmKKRKuPXtJSTHQJ3mpuvLRlA5dlDDhrrcXfyWr6Z/y3wIMfjfqVFO/gDZYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-------引入jQuery函式庫------->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        ul li{
+            width: 80%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 10px #aaa;
+            margin: 10px;
+        }
+        ul li:hover{
+            width: 81%;
+            background-color: lightgreen;
+        }
+    </style>
+
 </head>
 <body>
     <h1 class="header">axios</h1>
@@ -26,6 +44,27 @@
 ********************************************************/
 
 //發起一個axios請求
+axios.get('https://kktix.com/events.json')
+.then(function(response){
+    // console.log('response',response);
+    let events=response.data.entry;
+        let li="";
+        // console.log('events',events);
+        events.forEach((event, idx) => {
+          let  li="<li>"+event.title+"</li>";
+          $('ul').append(li);
+        });
+        // console.log(li);
+
+        $(".title").html(response.title);
+
+//處理回應
+
+})
+.catch(function(err){
+//error
+
+})
 
 
 //建立回呼函式(call back function)來處理回應時的各項行為
