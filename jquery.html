@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="style.css">
       <!-------引入jQuery函式庫------->
       <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        ul li{
+            width: 80%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 10px #aaa;
+            margin: 10px;
+        }
+        ul li:hover{
+            width: 81%;
+            background-color: lightgreen;
+        }
+    </style>
 </head>
 <body>
     <h1 class="header">jQuery</h1>
@@ -27,15 +41,25 @@
     ********************************************************/
      
     //利用$.ajax()方法傳送請求並取得回應
-    /* $.ajax(
+    $.ajax(
       {
-        url:'',
-        type:'',
-        success:,
-        error:,
-        complete:
+        url:'https://kktix.com/events.json',
+        type:'get',
+        success:(res)=>{
+          console.log('res',res)
+          let events=res.entry;
+          let li="";
+          console.log('events',events);
+          events.forEach((event, idx) => {
+            let  li="<li>"+event.title+"</li>";
+            $('ul').append(li);
+          });
+          // console.log(li);
+
+          $(".title").html(res.title);
+        },
       }
-    ) */   
+    )   
 
     
     //利用$.get()方法傳送請求並取得回應
