@@ -17,7 +17,7 @@ $ref=[
 ];
 
 foreach($classrooms as $key=>$classroom){
-    $classrooms[$key]['classroom']=$ref[$classroom['classroom']];
+    $classrooms[$key]['name']=$ref[$classroom['classroom']];
 
 }
 

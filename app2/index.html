@@ -59,8 +59,22 @@ function getClassrooms(){
     console.log(classes); */
     $(".class-nav").html("");
     classrooms.forEach(item=>{
-      $(".class-nav").append(`<button>${item.classroom}</button>`);
+      $(".class-nav").append(`<button data-classroom='${item.classroom}'>${item.name}</button>`);
     })
+
+    $('.class-nav button').on('click', function(){
+      // console.log($(this).data('classroom'));
+      let classroom = $(this).data('classroom');
+      getClassStudents(classroom);
+    })
+  })
+}
+
+// 
+function getClassStudents(classroom){
+  $.get(`./api/get_students.php`,{classroom},function(data){
+    console.log(data);
+    //這裡可以處理取得的班級資料，例如顯示在畫面上
   })
 }
 
