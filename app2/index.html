@@ -29,12 +29,83 @@
       background-color: #708ef1;
       box-shadow: 0 4px 12px rgba(60,60,180,0.15);
     }
+
+    .students {
+      margin: 32px auto;
+      max-width: 1100px;
+      background: #f8fbff;
+      border-radius: 18px;
+      box-shadow: 0 4px 18px rgba(60, 120, 200, 0.08);
+      padding: 32px 24px;
+    }
+
+    .students table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(60, 120, 200, 0.06);
+    }
+
+    .students th, .students td {
+      padding: 14px 12px;
+      text-align: center;
+      border-bottom: 1px solid #e3eaf2;
+      font-size: 1rem;
+    }
+
+    .students th {
+      background: #eaf4fc;
+      color: #2a4d7a;
+      font-weight: 600;
+    }
+
+    .students tr:last-child td {
+      border-bottom: none;
+    }
+
+    .students tbody tr:hover {
+      background: #f0f6ff;
+      transition: background 0.2s;
+    }
+
+
     </style>
 </head>
 <body>
   <h1 class="header">學生資料管理系統</h1>
   <div class="class-nav">
 
+  </div>
+  <div class="students">
+    <table>
+      <thead>
+        <tr>
+          <th>學號</th>
+          <th>班級</th>
+          <th>座號</th>
+          <th>姓名</th>
+          <th>生日</th>
+          <th>地址</th>
+          <th>電話</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <th>學號</th>
+          <th>班級</th>
+          <th>座號</th>
+          <th>姓名</th>
+          <th>生日</th>
+          <th>地址</th>
+          <th>電話</th>
+          <th>操作</th>
+        </tr> -->
+
+      </tbody>
+    </table>
   </div>
   
 </body>
@@ -70,11 +141,37 @@ function getClassrooms(){
   })
 }
 
-// 
+getClassStudents('101'); // 預設載入101班級的學生資料
+//取得班級資料的函式 
 function getClassStudents(classroom){
+  $(".students tbody").html(''); // 清空現有的學生資料
   $.get(`./api/get_students.php`,{classroom},function(data){
     console.log(data);
     //這裡可以處理取得的班級資料，例如顯示在畫面上
+    data.forEach(student=>{
+      $(".students tbody").append(`
+      <tr>
+          <td>${student.uni_id}</td>
+          <td>${student.classname}</td>
+          <td>${student.seat_num}</td>
+          <td>${student.name}</td>
+          <td>${student.birthday}</td>
+          <td>${student.address}</td>
+          <td>${student.telphone}</td>
+          <td>
+            <button class="edit-btn" data-id="${student.id}">編輯</button>
+            <button class="delete-btn" data-id="${student.id}">刪除</button>
+          </td>
+        </tr>
+      `);
+    })
+
+
+
+
+
+
+
   })
 }
 
