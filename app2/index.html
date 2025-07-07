@@ -155,7 +155,7 @@ getClassrooms();
 // 取得所有班級資料
 function getClassrooms(){
   $.get("./api/classrooms.php", function(classrooms){
-    console.log(classrooms);
+    console.log('classrooms',classrooms);
     /* let classes=JSON.parse(classrooms);
     console.log(classes); */
     $(".class-nav").html("");
@@ -176,7 +176,7 @@ getClassStudents('101'); // 預設載入101班級的學生資料
 function getClassStudents(classroom){
   $(".students tbody").html(''); // 清空現有的學生資料
   $.get(`./api/get_students.php`,{classroom},function(data){
-    console.log(data);
+    console.log('data',data);
     //這裡可以處理取得的班級資料，例如顯示在畫面上
     data.forEach(student=>{
       $(".students tbody").append(`
