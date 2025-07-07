@@ -219,7 +219,7 @@ function getClassStudents(classroom){
           <td>${student.address}</td>
           <td>${student.telphone}</td>
           <td>
-            <button class="edit-btn" data-id="${student.id}">編輯</button>
+            <button class="edit-btn" data-id="${student.id}"  onclick="location.href='edit_student.html?id=${student.id}'">編輯</button>
             <button class="delete-btn" data-id="${student.id}" onclick='del(${student.id})'>刪除</button>
           </td>
         </tr>
