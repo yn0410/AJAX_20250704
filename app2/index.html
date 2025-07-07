@@ -13,8 +13,9 @@
 </head>
 <body>
   <h1 class="header">學生資料管理系統</h1>
-  <button>一年一班</button>
-  <button>一年二班</button>
+  <div class="class-nav">
+
+  </div>
   
 </body>
 </html>
@@ -26,13 +27,20 @@
 * 4.是否會有回傳值？回傳值的功用及處理？
 * 5.是否需要更新畫面內容？更新畫面的方法？
 ************************************/
+
+
+getClassrooms();
+
 // 取得所有班級資料
 function getClassrooms(){
   $.get("./api/classrooms.php", function(classrooms){
     console.log(classrooms);
     /* let classes=JSON.parse(classrooms);
     console.log(classes); */
-    
+    $(".class-nav").html("");
+    classrooms.forEach(item=>{
+      $(".class-nav").append(`<button>${item.classroom}</button>`);
+    })
   })
 }
 
