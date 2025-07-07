@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新增學生</title>
+    <script src="jquery.js"></script>
 </head>
 <body>
     <style>
@@ -126,8 +127,35 @@
             <label for="address">地址</label>
             <textarea id="address" name="address" rows="2"></textarea>
             </div>
-            <button type="submit">送出</button>
+            <button type="button" onclick="add()">送出</button>
         </form>
     </div>
 </body>
 </html>
+
+<script>
+    function add(){
+        let data={
+            uni_id: $("#uni_id").val(),
+            name: $("#name").val(),
+            national_id: $("#national_id").val(),
+            birthday: $("#birthday").val(),
+            classroom: $("#classroom").val(),
+            seat_num: $("#seat_num").val(),
+            major: $("#major").val(),
+            secondary: $("#secondary").val(),
+            parent: $("#parent").val(),
+            telphone: $("#telphone").val(),
+            address: $("#address").val()
+        };
+
+        $.post("./api/add_student.php", data, function(res){
+            if(res.success){
+                alert("新增成功");
+                location.href = "index.html"; // 返回主頁
+            } else {
+                alert("新增失敗：" + res.message);
+            }
+        });
+    }
+</script>
